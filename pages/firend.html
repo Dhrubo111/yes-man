@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        /* Add CSS for animation */
+        .no.shake {
+            animation: shake 0.5s;
+        }
+
+        @keyframes shake {
+            0% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            50% { transform: translateX(5px); }
+            75% { transform: translateX(-5px); }
+            100% { transform: translateX(0); }
+        }
+    </style>
+</head>
+<body>
+    <div style="width:100%;height:0;padding-bottom:100%;position:relative;">
+        <iframe src="https://giphy.com/embed/9d3LQ6TdV2Flo8ODTU" width="100%" height="100%" style="position:absolute" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+    </div>
+    <h1>Will you be my friend?</h1>
+    <div class="flexing">
+        <button class="yes" onclick="expandYes()">Yes</button>
+        <button class="no" onclick="shakeNo()">No</button>
+    </div>
+
+    <script>
+        let noClicks = 0;
+
+        function shakeNo() {
+            // Add 'shake' class to 'no' button to trigger shake animation
+            document.querySelector('.no').classList.add('shake');
+            
+            // After 1 second, remove 'shake' class to stop the animation
+            setTimeout(function() {
+                document.querySelector('.no').classList.remove('shake');
+            }, 500);
+
+            // Increment the count of 'no' clicks
+            noClicks++;
+
+            // Update 'Yes' button text and size based on the number of 'No' clicks
+            let yesButton = document.querySelector('.yes');
+            if (noClicks === 1) {
+                yesButton.style.fontSize = '2em';
+                yesButton.innerText = 'Say yes now';
+            } else if (noClicks === 2) {
+                yesButton.style.fontSize = '3em';
+                yesButton.innerText = 'Yeeeeeesss';
+            } else if (noClicks >= 3) {
+                yesButton.style.fontSize = '4em';
+                yesButton.innerText = 'Yes right now';
+                // If 'No' button is clicked three times, perform action
+                yesButton.style.width = '100%';
+                yesButton.style.height = '100vh';
+                yesButton.style.color = 'green';
+            }
+        }
+
+        function expandYes() {
+            // Change 'Yes' button text to 'We are friends now'
+            document.querySelector('.yes').innerText = 'We are friends now';
+            // Change 'Yes' button style to green color and larger font
+            document.querySelector('.yes').style.color = 'green';
+            document.querySelector('.yes').style.fontSize = '3em';
+            document.querySelector('.yes').style.width = '100%';
+            document.querySelector('.yes').style.height = '100vh';
+        }
+    </script>
+</body>
+</html>
